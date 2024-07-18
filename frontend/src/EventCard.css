@@ -1,0 +1,25 @@
+.event-card {
+    border: 1px solid #ddd;
+    padding: 16px;
+    margin: 8px 0;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+  }
+  
+  .event-card h5 {
+    margin: 0 0 8px;
+    font-size: 18px;
+  }
+  
+  .event-card p {
+    margin: 4px 0;
+    font-size: 14px;
+  }
+  
+  .event-card img.event-photo {
+    width: 100px;
+    height: 100px;
+    margin: 8px 0;
+    object-fit: cover;
+  }
+  
