@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import './HomePage.css';
 import zomatoLogo from './zomato-pic.jpg'; // Replace with your Zomato logo image path
 
+
+
 const RestaurantCard = ({ restaurant, onClick }) => {
   return (
     <div className="restaurant-card" onClick={onClick}>
@@ -17,6 +19,7 @@ const RestaurantCard = ({ restaurant, onClick }) => {
 };
 
 const HomePage = () => {
+  const base_url = import.meta.env.VITE_BASE_URL;
   const [restaurants, setRestaurants] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -30,7 +33,7 @@ const HomePage = () => {
 
   const handleSearch = (query) => {
     setSearchQuery(query);
-    fetch(`http://localhost:5000/get/search?name=${query}`)
+    fetch(`${base_url}/get/search?name=${query}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -54,13 +57,13 @@ const HomePage = () => {
     let endpoint = '';
     switch(type) {
       case 'cuisines':
-        endpoint = `http://localhost:5000/get/filter/all?cuisines=${query}`;
+        endpoint = `${base_url}/get/filter/all?cuisines=${query}`;
         break;
       case 'country':
-        endpoint = `http://localhost:5000/get/filter/all?country=${query}`;
+        endpoint = `${base_url}/get/filter/all?country=${query}`;
         break;
       case 'cost_for_two':
-        endpoint = `http://localhost:5000/get/filter/all?cost_for_two=${query}`;
+        endpoint = `${base_url}/get/filter/all?cost_for_two=${query}`;
         break;
       default:
         break;
@@ -84,7 +87,7 @@ const HomePage = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/get/page/all?page=${page}&limit=9`) // Adjust the limit as needed
+    fetch(`${base_url}/get/page/all?page=${page}&limit=9`) // Adjust the limit as needed
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

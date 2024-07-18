@@ -8,10 +8,11 @@ const RestaurantDetails = () => {
   const [restaurant, setRestaurant] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const base_url = import.meta.env.VITE_BASE_URL;
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/get/getById/${id}`)
+    fetch(`${base_url}/get/getById/${id}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
